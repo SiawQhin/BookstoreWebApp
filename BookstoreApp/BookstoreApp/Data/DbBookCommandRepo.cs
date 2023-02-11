@@ -4,24 +4,34 @@ namespace BookstoreApp.Data
 {
     public class DbBookCommandRepo : IBookCommand
     {
-        private readonly DatabaseContext _db;
-        public DbBookCommandRepo(DatabaseContext db)
+        private readonly CommandDatabaseContext _dbCommand;
+        private readonly QueryDatabaseContext _dbQuery;
+        public DbBookCommandRepo(CommandDatabaseContext dbCommand, QueryDatabaseContext dbQuery)
         {
-            _db = db;
+            _dbCommand = dbCommand;
+            _dbQuery = dbQuery;
         }
+
         public Booking? ReserveBooking(int? bookId, int? userId)
         {
             if (bookId == null || userId == null) //check if bookId or userId is null
             {
                 return null;
             }
-            var newBooking = _db.Bookings.Add(new Booking
+            var newBooking = _dbCommand.Bookings.Add(new Booking
             {
                 BookId = (int)bookId,
                 UserId = (int)userId,
 
             });
-            _db.SaveChanges();
+            _dbQuery.Bookings.Add(new Booking
+            {
+                BookId = (int)bookId,
+                UserId = (int)userId,
+
+            });
+            _dbCommand.SaveChanges();
+            _dbQuery.SaveChanges();
             return newBooking.Entity;
         }
     }

@@ -6,8 +6,8 @@ namespace BookstoreApp.Controllers
 {
     public class UserController : Controller
     {
-        private readonly DatabaseContext _db;
-        public UserController(DatabaseContext db)
+        private readonly QueryDatabaseContext _db;
+        public UserController(QueryDatabaseContext db)
         {
             _db = db;
         }

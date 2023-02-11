@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookstoreApp.Data
 {
-    public class DatabaseContext : DbContext
+    public class QueryDatabaseContext : DbContext
     {
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
+        public QueryDatabaseContext(DbContextOptions<QueryDatabaseContext> options) : base(options)
         {
 
         }

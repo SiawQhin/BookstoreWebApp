@@ -4,9 +4,9 @@ namespace BookstoreApp.Data
 {
     public class DbBookQueryRepo : IBookQuery
     {
-        private readonly DatabaseContext _db;
+        private readonly QueryDatabaseContext _db;
 
-        public DbBookQueryRepo(DatabaseContext db)
+        public DbBookQueryRepo(QueryDatabaseContext db)
         {
             _db = db;
         }

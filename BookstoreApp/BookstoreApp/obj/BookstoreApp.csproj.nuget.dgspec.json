@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "\\\\Mac\\Home\\Desktop\\ASP.Net Projects\\BookstoreAppStep1\\BookstoreApp\\BookstoreApp\\BookstoreApp.csproj": {}
+    "\\\\Mac\\Home\\Desktop\\ASP.Net Projects\\BookstoreAppStep2\\BookstoreApp\\BookstoreApp\\BookstoreApp.csproj": {}
   },
   "projects": {
-    "\\\\Mac\\Home\\Desktop\\ASP.Net Projects\\BookstoreAppStep1\\BookstoreApp\\BookstoreApp\\BookstoreApp.csproj": {
+    "\\\\Mac\\Home\\Desktop\\ASP.Net Projects\\BookstoreAppStep2\\BookstoreApp\\BookstoreApp\\BookstoreApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "\\\\Mac\\Home\\Desktop\\ASP.Net Projects\\BookstoreAppStep1\\BookstoreApp\\BookstoreApp\\BookstoreApp.csproj",
+        "projectUniqueName": "\\\\Mac\\Home\\Desktop\\ASP.Net Projects\\BookstoreAppStep2\\BookstoreApp\\BookstoreApp\\BookstoreApp.csproj",
         "projectName": "BookstoreApp",
-        "projectPath": "\\\\Mac\\Home\\Desktop\\ASP.Net Projects\\BookstoreAppStep1\\BookstoreApp\\BookstoreApp\\BookstoreApp.csproj",
+        "projectPath": "\\\\Mac\\Home\\Desktop\\ASP.Net Projects\\BookstoreAppStep2\\BookstoreApp\\BookstoreApp\\BookstoreApp.csproj",
         "packagesPath": "C:\\Users\\siawqhinchan\\.nuget\\packages\\",
-        "outputPath": "\\\\Mac\\Home\\Desktop\\ASP.Net Projects\\BookstoreAppStep1\\BookstoreApp\\BookstoreApp\\obj\\",
+        "outputPath": "\\\\Mac\\Home\\Desktop\\ASP.Net Projects\\BookstoreAppStep2\\BookstoreApp\\BookstoreApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\siawqhinchan\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -9,8 +9,12 @@ builder.Services.AddControllersWithViews()
 
 builder.Services.AddSession();
 
-var connStr = builder.Configuration.GetConnectionString("Default");
-builder.Services.AddDbContext<DatabaseContext>(o => o.UseSqlite(connStr));
+//query db
+var connStrQuery = builder.Configuration.GetConnectionString("QueryDb");
+builder.Services.AddDbContext<QueryDatabaseContext>(o => o.UseSqlite(connStrQuery));
+//command db
+var connStrCommand = builder.Configuration.GetConnectionString("CommandDb");
+builder.Services.AddDbContext<CommandDatabaseContext>(o => o.UseSqlite(connStrCommand));
 
 builder.Services.AddScoped<IBookQuery, DbBookQueryRepo>();
 builder.Services.AddScoped<IBookCommand, DbBookCommandRepo>();

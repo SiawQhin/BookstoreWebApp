@@ -43,7 +43,6 @@ namespace BookstoreApp.Controllers
             var books = _booksQuery.GetBooks(searchName);
             return View(books);
         }
-
         public IActionResult Reserve(int? id)
         {
             var userId = HttpContext.Session.GetString("UserId");

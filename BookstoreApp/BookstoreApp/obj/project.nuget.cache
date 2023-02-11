@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/W9+KHOWE5+Y1akUD+QKTp+5oFXeg4xp1Ghk9yNnL/TChmJUsyqJQJl5hzqai220z8dwxtk1syxpgMmjvH/PDA==",
+  "dgSpecHash": "1QvXU46jivw7jnX7VqUrVrMVVmx6VY0Iwp0G49uD78IGjFQNv6A/+PUeKkZX0Zy029PU4+JLKEpp181zhToI3A==",
   "success": true,
-  "projectFilePath": "\\\\Mac\\Home\\Desktop\\ASP.Net Projects\\BookstoreAppStep1\\BookstoreApp\\BookstoreApp\\BookstoreApp.csproj",
+  "projectFilePath": "\\\\Mac\\Home\\Desktop\\ASP.Net Projects\\BookstoreAppStep2\\BookstoreApp\\BookstoreApp\\BookstoreApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\siawqhinchan\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\siawqhinchan\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\2.2.0\\microsoft.aspnetcore.cryptography.internal.2.2.0.nupkg.sha512",

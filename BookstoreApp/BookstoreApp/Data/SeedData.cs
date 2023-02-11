@@ -6,10 +6,14 @@ public static class CustomData
     public static void SeedData(WebApplication app)
     {
         var scope = app.Services.CreateScope();
-        var db = scope.ServiceProvider.GetService<DatabaseContext>();
+        var dbQuery = scope.ServiceProvider.GetService<QueryDatabaseContext>();
+        var dbCommand = scope.ServiceProvider.GetService<CommandDatabaseContext>();
 
-        db.Database.EnsureDeleted();
-        db.Database.EnsureCreated();
+        dbQuery.Database.EnsureDeleted();
+        dbQuery.Database.EnsureCreated();
+        dbCommand.Database.EnsureDeleted();
+        dbCommand.Database.EnsureCreated();
+
 
         var book1 = new Book
         {
@@ -42,14 +46,15 @@ public static class CustomData
             Password = "1234"
         };
 
-        db.Books.Add(book1);
-        db.Books.Add(book2);
-        db.Books.Add(book3);
+        dbQuery.Books.Add(book1);
+        dbQuery.Books.Add(book2);
+        dbQuery.Books.Add(book3);
 
-        db.Users.Add(user1);
-        db.Users.Add(user2);
+        dbQuery.Users.Add(user1);
+        dbQuery.Users.Add(user2);
 
-        db.SaveChanges();
+        dbQuery.SaveChanges();
+        dbCommand.SaveChanges();
     }
 }
 
