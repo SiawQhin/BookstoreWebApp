@@ -1,13 +1,12 @@
 ﻿using BookstoreApp.Models;
-using SQLitePCL;
 
 namespace BookstoreApp.Data
 {
-    public class DbBookRepo : IBook
+    public class DbBookQueryRepo : IBookQuery
     {
         private readonly DatabaseContext _db;
 
-        public DbBookRepo(DatabaseContext db)
+        public DbBookQueryRepo(DatabaseContext db)
         {
             _db = db;
         }
@@ -33,22 +32,6 @@ namespace BookstoreApp.Data
         public Booking[] GetBookings()
         {
             return _db.Bookings.ToArray();
-        }
-
-        public Booking? ReserveBooking(int? bookId, int? userId)
-        {
-            if (bookId == null || userId == null) //check if bookId or userId is null
-            {
-                return null;
-            }
-            var newBooking = _db.Bookings.Add(new Booking
-            {
-                BookId = (int)bookId,
-                UserId = (int)userId,
-
-            });
-            _db.SaveChanges();
-            return newBooking.Entity;
         }
 
         public Booking? GetBookingByBookId(int? bookId)

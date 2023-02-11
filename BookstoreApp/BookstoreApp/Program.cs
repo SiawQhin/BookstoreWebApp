@@ -12,7 +12,8 @@ builder.Services.AddSession();
 var connStr = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<DatabaseContext>(o => o.UseSqlite(connStr));
 
-builder.Services.AddScoped<IBook, DbBookRepo>();
+builder.Services.AddScoped<IBookQuery, DbBookQueryRepo>();
+builder.Services.AddScoped<IBookCommand, DbBookCommandRepo>();
 //builder.Services.AddScoped<IBook, InMemoryBookRepo>();
 
 var app = builder.Build();

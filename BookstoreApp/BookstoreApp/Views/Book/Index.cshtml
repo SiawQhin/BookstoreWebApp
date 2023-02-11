@@ -8,7 +8,7 @@
         <div class="col-10 text-end">
             User: @ViewBag.UserName
         </div>
-        
+
         <div class="row">
             <div class="col-4">
                 <input class="form-control" id="SearchName" name="SearchName" type="text" value="" />
@@ -18,7 +18,7 @@
                 <button class="btn btn-primary" type="submit">Search</button>
             </div>
         </div>
-    } 
+    }
 
     <br />
     <hr />
@@ -49,31 +49,31 @@
                         <td width="30%">@book.Title</td>
                         <td width="30%">@book.BookUUID</td>
                         <td width="30%">
-                                @{
-                                    isReserved = false;
-                                    isMyBook = false;
+                            @{
+                                isReserved = false;
+                                isMyBook = false;
 
-                                    if(bookings != null)
+                                if (bookings != null)
+                                {
+                                    foreach (var b in bookings)
                                     {
-                                        foreach (var b in bookings)
+                                        if (b.BookId == book.Id)
                                         {
-                                            if (b.BookId == book.Id)
+                                            isReserved = true;
+                                            if (b.UserId == userId)
                                             {
-                                                isReserved = true;
-                                                if (b.UserId == userId)
-                                                {
-                                                    isMyBook = true;
-                                                }
-                                                break;
+                                                isMyBook = true;
                                             }
+                                            break;
                                         }
                                     }
                                 }
+                            }
                             @if (isReserved != true)
                             {
                                 <a asp-action="Reserve" class="btn btn-primary" asp-route-Id="@book.Id">Reserve</a>
                             }
-                            else if(isMyBook == true)
+                            else if (isMyBook == true)
                             {
                                 <label>Reserved By You</label>
                             }
@@ -84,9 +84,9 @@
                         </td>
                     </tr>
                 }
-                
+
             </tbody>
-        </table>  
+        </table>
     }
     else
     {

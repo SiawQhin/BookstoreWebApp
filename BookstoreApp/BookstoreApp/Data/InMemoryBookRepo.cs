@@ -2,7 +2,7 @@
 
 namespace BookstoreApp.Data
 {
-    public class InMemoryBookRepo :IBook
+    public class InMemoryBookRepo :IBookQuery
     {
         public Book[] GetAllBooks()
         {

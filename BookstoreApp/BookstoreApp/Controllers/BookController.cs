@@ -6,11 +6,13 @@ namespace BookstoreApp.Controllers
 {
     public class BookController : Controller
     {
-        private readonly IBook _books;
+        private readonly IBookCommand _booksCommand;
+        private readonly IBookQuery _booksQuery;
 
-        public BookController(IBook books)
+        public BookController(IBookCommand booksCommand, IBookQuery booksQuery)
         {
-            _books = books;
+            _booksCommand = booksCommand;
+            _booksQuery = booksQuery;
         }
 
         public IActionResult Index()
@@ -21,9 +23,9 @@ namespace BookstoreApp.Controllers
             {
                 ViewBag.UserId = userId;
                 ViewBag.UserName = userName;
-                var books = _books.GetAllBooks();
+                var books = _booksQuery.GetAllBooks();
                 ViewBag.Books = books;
-                ViewBag.Bookings = _books.GetBookings();
+                ViewBag.Bookings = _booksQuery.GetBookings();
                 return View(books);
             }
             return RedirectToAction("Login", "User");
@@ -37,8 +39,8 @@ namespace BookstoreApp.Controllers
             ViewBag.SearchName = searchName;
             ViewBag.UserId = userId;
             ViewBag.UserName = userName;
-            ViewBag.Bookings = _books.GetBookings();
-            var books = _books.GetBooks(searchName);
+            ViewBag.Bookings = _booksQuery.GetBookings();
+            var books = _booksQuery.GetBooks(searchName);
             return View(books);
         }
 
@@ -47,7 +49,7 @@ namespace BookstoreApp.Controllers
             var userId = HttpContext.Session.GetString("UserId");
             var userName = HttpContext.Session.GetString("UserName");
             var intUserId = Convert.ToInt16(userId);
-            var book = _books.FindBook(id);
+            var book = _booksQuery.FindBook(id);
             if (book == null)
             {
                 return NotFound();
@@ -55,12 +57,12 @@ namespace BookstoreApp.Controllers
             ViewBag.UserId = intUserId;
 
             //check if the book is booked
-            var checkBooking = _books.GetBookingByBookId(id);
+            var checkBooking = _booksQuery.GetBookingByBookId(id);
 
             if (checkBooking == null)
             {
                 //booking not found
-                var newBooking = _books.ReserveBooking(id, intUserId);
+                var newBooking = _booksCommand.ReserveBooking(id, intUserId);
                 ViewBag.BookingNumber = newBooking.Id;
                 ViewBag.IsBookSuccess = true;
                 return View();
