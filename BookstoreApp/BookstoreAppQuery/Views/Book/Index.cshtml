@@ -1,12 +1,10 @@
-﻿@model IEnumerable<BookstoreAppCommand.Models.Book>
+﻿@model IEnumerable<BookstoreAppQuery.Models.Book>
 
 <div class="container p-3">
     <h2 class="text-primary">Books</h2>
 
-    <form action="https://localhost:8012/Book/Search" method="post">
-    
-    @*@using (Html.BeginForm("Index", "Book", FormMethod.Post))
-    {*@
+    @using (Html.BeginForm("Index", "Book", FormMethod.Post))
+    {
         <div class="col-10 text-end">
             User: @ViewBag.UserName
         </div>
@@ -20,15 +18,13 @@
                 <button class="btn btn-primary" type="submit">Search</button>
             </div>
         </div>
-    </form>
-    @*}*@
-
+    }
     <br />
     <hr />
     <div>Search Results for: @ViewBag.SearchName</div>
     <br />
 
-    <form action="https://localhost:8012/Book/Reserve" method="post">
+    
     @if (Model.Count() > 0)
     {
         <table class="table table-bordered table table-striped" style="width:100%">
@@ -48,7 +44,9 @@
                 }
 
                 @foreach (var book in Model)
+
                 {
+                    <form action="https://localhost:8012/Book/Reserve" method="post">
                     <tr>
                         <td width="30%">@book.Title</td>
                         <td width="30%">@book.BookUUID</td>
@@ -73,9 +71,12 @@
                                     }
                                 }
                             }
+
                             @if (isReserved != true)
                             {
                                 @*<a asp-action="Reserve" class="btn btn-primary" asp-route-Id="@book.Id">Reserve</a>*@
+                                    @Html.Hidden("id", book.Id)
+                                    @Html.Hidden("userId", (short) userId)
                                 <button class="btn btn-primary" type="submit">Reserve</button>
                             }
                             else if (isMyBook == true)
@@ -88,8 +89,8 @@
                             }
                         </td>
                     </tr>
+                </form>
                 }
-
             </tbody>
         </table>
     }
@@ -97,7 +98,6 @@
     {
         <p>No Data Available</p>
     }
-    </form>
 </div>
 
 

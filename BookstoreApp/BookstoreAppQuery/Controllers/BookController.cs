@@ -1,8 +1,8 @@
-﻿using BookstoreAppCommand.Data;
-using BookstoreAppCommand.Models;
+﻿using BookstoreAppQuery.Data;
+using BookstoreAppQuery.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookstoreAppCommand.Controllers
+namespace BookstoreAppQuery.Controllers
 {
     public class BookController : Controller
     {
@@ -43,31 +43,38 @@ namespace BookstoreAppCommand.Controllers
             var books = _booksQuery.GetBooks(searchName);
             return View(books);
         }
-        public IActionResult Reserve(int? id)
+        //public IActionResult Reserve(int? id)
+        //{
+        //    var userId = HttpContext.Session.GetString("UserId");
+        //    var userName = HttpContext.Session.GetString("UserName");
+        //    var intUserId = Convert.ToInt16(userId);
+        //    var book = _booksQuery.FindBook(id);
+        //    if (book == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    ViewBag.UserId = intUserId;
+
+        //    //check if the book is booked
+        //    var checkBooking = _booksQuery.GetBookingByBookId(id);
+
+        //    if (checkBooking == null)
+        //    {
+        //        //booking not found
+        //        var newBooking = _booksCommand.ReserveBooking(id, intUserId);
+        //        ViewBag.BookingNumber = newBooking.Id;
+        //        ViewBag.IsBookSuccess = true;
+        //        return View();
+        //    };
+
+        //    ViewBag.IsBookSuccess = false;
+        //    return View();
+        //}
+
+        public IActionResult Reserve(int? bookingNumber, int isBookSuccess)
         {
-            var userId = HttpContext.Session.GetString("UserId");
-            var userName = HttpContext.Session.GetString("UserName");
-            var intUserId = Convert.ToInt16(userId);
-            var book = _booksQuery.FindBook(id);
-            if (book == null)
-            {
-                return NotFound();
-            }
-            ViewBag.UserId = intUserId;
-
-            //check if the book is booked
-            var checkBooking = _booksQuery.GetBookingByBookId(id);
-
-            if (checkBooking == null)
-            {
-                //booking not found
-                var newBooking = _booksCommand.ReserveBooking(id, intUserId);
-                ViewBag.BookingNumber = newBooking.Id;
-                ViewBag.IsBookSuccess = true;
-                return View();
-            };
-
-            ViewBag.IsBookSuccess = false;
+            ViewBag.BookingNumber = bookingNumber;
+            ViewBag.IsBookSuccess = isBookSuccess == 1? true : false;
             return View();
         }
 

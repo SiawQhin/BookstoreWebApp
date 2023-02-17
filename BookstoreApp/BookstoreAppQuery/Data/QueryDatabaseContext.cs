@@ -1,7 +1,7 @@
-﻿using BookstoreAppCommand.Models;
+﻿using BookstoreAppQuery.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookstoreAppCommand.Data
+namespace BookstoreAppQuery.Data
 {
     public class QueryDatabaseContext : DbContext
     {

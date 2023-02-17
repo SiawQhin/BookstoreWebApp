@@ -15,45 +15,15 @@ namespace BookstoreAppCommand.Controllers
             _booksQuery = booksQuery;
         }
 
-        public IActionResult Index()
-        {
-            var userId = HttpContext.Session.GetString("UserId");
-            var userName = HttpContext.Session.GetString("UserName");
-            if (userName != null)
-            {
-                ViewBag.UserId = userId;
-                ViewBag.UserName = userName;
-                var books = _booksQuery.GetAllBooks();
-                ViewBag.Books = books;
-                ViewBag.Bookings = _booksQuery.GetBookings();
-                return View(books);
-            }
-            return RedirectToAction("Login", "User");
-        }
-
         [HttpPost]
-        public IActionResult Index(string searchName)
+        public IActionResult Reserve(int? id, short userId)
         {
-            var userId = HttpContext.Session.GetString("UserId");
-            var userName = HttpContext.Session.GetString("UserName");
-            ViewBag.SearchName = searchName;
-            ViewBag.UserId = userId;
-            ViewBag.UserName = userName;
-            ViewBag.Bookings = _booksQuery.GetBookings();
-            var books = _booksQuery.GetBooks(searchName);
-            return View(books);
-        }
-        public IActionResult Reserve(int? id)
-        {
-            var userId = HttpContext.Session.GetString("UserId");
-            var userName = HttpContext.Session.GetString("UserName");
-            var intUserId = Convert.ToInt16(userId);
+            var IsBookSuccess = 0;
             var book = _booksQuery.FindBook(id);
             if (book == null)
             {
                 return NotFound();
             }
-            ViewBag.UserId = intUserId;
 
             //check if the book is booked
             var checkBooking = _booksQuery.GetBookingByBookId(id);
@@ -61,14 +31,12 @@ namespace BookstoreAppCommand.Controllers
             if (checkBooking == null)
             {
                 //booking not found
-                var newBooking = _booksCommand.ReserveBooking(id, intUserId);
-                ViewBag.BookingNumber = newBooking.Id;
-                ViewBag.IsBookSuccess = true;
-                return View();
+                var newBooking = _booksCommand.ReserveBooking(id, userId);
+                IsBookSuccess = 1;
+                return Redirect($"https://localhost:8011/Book/Reserve?bookingNumber={newBooking.Id}&isBookSuccess={IsBookSuccess}");
             };
 
-            ViewBag.IsBookSuccess = false;
-            return View();
+            return Redirect($"https://localhost:8011/Book/Reserve?bookingNumber=&isBookSuccess={IsBookSuccess}");
         }
 
     }

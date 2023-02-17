@@ -1,4 +1,4 @@
-using BookstoreAppCommand.Data;
+using BookstoreAppQuery.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

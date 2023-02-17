@@ -1,8 +1,8 @@
-﻿using BookstoreAppCommand.Data;
-using BookstoreAppCommand.Models;
+﻿using BookstoreAppQuery.Data;
+using BookstoreAppQuery.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookstoreAppCommand.Controllers
+namespace BookstoreAppQuery.Controllers
 {
     public class UserController : Controller
     {

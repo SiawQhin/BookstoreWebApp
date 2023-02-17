@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace BookstoreAppCommand.Migrations
+namespace BookstoreAppQuery.Migrations
 {
     public partial class InitDatabase : Migration
     {

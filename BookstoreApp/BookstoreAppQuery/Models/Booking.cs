@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BookstoreAppCommand.Models
+namespace BookstoreAppQuery.Models
 {
     public class Booking
     {

@@ -1,6 +1,6 @@
-﻿using BookstoreAppCommand.Models;
+﻿using BookstoreAppQuery.Models;
 
-namespace BookstoreAppCommand.Data
+namespace BookstoreAppQuery.Data
 {
     public class InMemoryBookRepo :IBookQuery
     {

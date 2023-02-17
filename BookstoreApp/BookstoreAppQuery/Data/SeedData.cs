@@ -1,5 +1,5 @@
-﻿using BookstoreAppCommand.Data;
-using BookstoreAppCommand.Models;
+﻿using BookstoreAppQuery.Data;
+using BookstoreAppQuery.Models;
 
 public static class CustomData
 {
