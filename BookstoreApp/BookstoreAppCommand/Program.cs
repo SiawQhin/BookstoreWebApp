@@ -16,6 +16,12 @@ builder.Services.AddDbContext<QueryDatabaseContext>(o => o.UseSqlite(connStrQuer
 var connStrCommand = builder.Configuration.GetConnectionString("CommandDb");
 builder.Services.AddDbContext<CommandDatabaseContext>(o => o.UseSqlite(connStrCommand));
 
+builder.Services.AddHttpClient("ReserveAPIClient", client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7260/api/"); // Shopping.API url     
+    //client.BaseAddress = new Uri(builder.Configuration["ReserveAPIUrl"]);
+});
+
 builder.Services.AddScoped<IBookQuery, DbBookQueryRepo>();
 builder.Services.AddScoped<IBookCommand, DbBookCommandRepo>();
 //builder.Services.AddScoped<IBook, InMemoryBookRepo>();

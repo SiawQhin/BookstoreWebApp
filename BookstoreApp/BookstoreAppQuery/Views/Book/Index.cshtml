@@ -75,7 +75,7 @@
                             @if (isReserved != true)
                             {
                                 @*<a asp-action="Reserve" class="btn btn-primary" asp-route-Id="@book.Id">Reserve</a>*@
-                                    @Html.Hidden("id", book.Id)
+                                    @Html.Hidden("bookId", book.Id)
                                     @Html.Hidden("userId", (short) userId)
                                 <button class="btn btn-primary" type="submit">Reserve</button>
                             }

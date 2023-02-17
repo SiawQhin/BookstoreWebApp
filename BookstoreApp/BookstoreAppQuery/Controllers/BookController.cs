@@ -71,6 +71,10 @@ namespace BookstoreAppQuery.Controllers
         //    return View();
         //}
 
+        public IActionResult Test()
+        {
+            return Ok("Test");
+        }
         public IActionResult Reserve(int? bookingNumber, int isBookSuccess)
         {
             ViewBag.BookingNumber = bookingNumber;
