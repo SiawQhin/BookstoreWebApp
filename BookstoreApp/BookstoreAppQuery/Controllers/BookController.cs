@@ -78,6 +78,10 @@ namespace BookstoreAppQuery.Controllers
             return View();
         }
 
+        public IActionResult Pending()
+        {
+            return View();
+        }
     }
 }
 

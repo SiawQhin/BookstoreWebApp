@@ -1,4 +1,9 @@
 ﻿using BookstoreAppCommand.Models;
+using BookstoreAppCommand.Models.Events;
+using Microsoft.AspNetCore.Connections;
+using Newtonsoft.Json;
+using RabbitMQ.Client;
+using System.Text;
 
 namespace BookstoreAppCommand.Data
 {
@@ -34,5 +39,34 @@ namespace BookstoreAppCommand.Data
             _dbQuery.SaveChanges();
             return newBooking.Entity;
         }
+
+        public void PublishReserveBookingMessage(int bookId, int userId)
+        {
+            string _publishKey = "reserve_book";
+            var _factory = new ConnectionFactory
+            {
+                HostName = "localhost",
+            };
+
+            var _connection = _factory.CreateConnection();
+            using var _channel = _connection.CreateModel();
+            _channel.QueueDeclare(_publishKey, exclusive: false);
+
+            ReservedBookEvent _event = new()
+            {
+                BookId = bookId,
+                UserId = userId,
+            };
+            MyEvent myEvent = new()
+            {
+                EventName = "reservebook",
+                Payload = _event
+            };
+            var json = JsonConvert.SerializeObject(myEvent);
+
+            var _body = Encoding.UTF8.GetBytes(json);
+            _channel.BasicPublish(exchange: "", routingKey: _publishKey, body: _body);
+        }
+    
     }
 }

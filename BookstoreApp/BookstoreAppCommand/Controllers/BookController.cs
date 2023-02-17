@@ -16,29 +16,31 @@ namespace BookstoreAppCommand.Controllers
         }
 
         [HttpPost]
-        public IActionResult Reserve(int? id, short userId)
+        public IActionResult Reserve(int id, short userId)
         {
-            var IsBookSuccess = 0;
-            var book = _booksQuery.FindBook(id);
-            if (book == null)
-            {
-                return NotFound();
-            }
+            //var IsBookSuccess = 0;
+            //var book = _booksQuery.FindBook(id);
+            //if (book == null)
+            //{
+            //    return NotFound();
+            //}
 
-            //check if the book is booked
-            var checkBooking = _booksQuery.GetBookingByBookId(id);
+            ////check if the book is booked
+            //var checkBooking = _booksQuery.GetBookingByBookId(id);
 
-            if (checkBooking == null)
-            {
-                //booking not found
-                var newBooking = _booksCommand.ReserveBooking(id, userId);
-                IsBookSuccess = 1;
-                return Redirect($"https://localhost:8011/Book/Reserve?bookingNumber={newBooking.Id}&isBookSuccess={IsBookSuccess}");
-            };
-
-            return Redirect($"https://localhost:8011/Book/Reserve?bookingNumber=&isBookSuccess={IsBookSuccess}");
+            //if (checkBooking == null)
+            //{
+            //    //booking not found
+            //    var newBooking = _booksCommand.ReserveBooking(id, userId);
+            //    IsBookSuccess = 1;
+            //    return Redirect($"https://localhost:8011/Book/Pending");
+            //    //return Redirect($"https://localhost:8011/Book/Reserve?bookingNumber={newBooking.Id}&isBookSuccess={IsBookSuccess}");
+            //};
+            _booksCommand.PublishReserveBookingMessage(id, userId);
+            return Redirect($"https://localhost:8011/Book/Pending");
         }
 
+       
     }
 }
 
